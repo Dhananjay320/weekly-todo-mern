@@ -6,7 +6,7 @@ Create, edit, delete and search tasks scheduled for a date and time. The home sc
 
 | | |
 |---|---|
-| **Live demo** | `TODO: https://<service>.onrender.com` (first load after idle can take ~1 min on Render's free plan) |
+| **Live demo** | https://weekly-todo-jd71.onrender.com (first load after idle can take ~1 min on Render's free plan) |
 | **API** | same origin, under `/api` (health: `/api/health`) |
 
 ## Features
@@ -91,6 +91,6 @@ Task: `{ id, title, description, startAt, endAt, priority: "low"|"medium"|"high"
 ## Deploy (Render, free)
 
 1. MongoDB Atlas: allow access from `0.0.0.0/0` and copy the connection string with a database name (e.g. `/weekly-todo`).
-2. Render → **New → Blueprint** → this repo. [`render.yaml`](render.yaml) creates one web service; paste `MONGODB_URI` when asked.
+2. Render → **New → Blueprint** → this repo. [`render.yaml`](render.yaml) creates one web service; paste `MONGODB_URI` when asked. If it is left empty, the server starts an in-memory MongoDB, which works but resets whenever the service restarts.
 
 Netlify works for the frontend too (build `client`, publish `client/dist`, proxy `/api/*` to the API), but a single Render service is simpler.

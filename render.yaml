@@ -1,4 +1,4 @@
-﻿# Render blueprint: one free web service. Express serves the API under /api and the built React app.
+# Render blueprint: one free web service. Express serves the API under /api and the built React app.
 services:
   - type: web
     name: weekly-todo
