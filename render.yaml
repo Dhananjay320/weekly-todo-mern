@@ -1,0 +1,16 @@
+# Render blueprint: one free web service. Express serves the API under /api and the built React app.
+services:
+  - type: web
+    name: weekly-todo
+    runtime: node
+    plan: free
+    buildCommand: cd client && npm ci && npm run build && cd ../server && npm ci --omit=dev
+    startCommand: node server/src/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false

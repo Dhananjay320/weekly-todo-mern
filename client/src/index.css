@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* Colours and type taken from the Figma file (To Do List Mobile app). */
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #4566ec;
+  --color-brand-dark: #3451c9;
+  --color-navy: #22348f;
+  --color-track: #dde3ff;
+  --color-done-bg: #eef1ff;
+  --color-pending-bg: #fde8e8;
+  --color-pending: #d64545;
+  --color-ink: #1f2430;
+  --color-muted: #6b7180;
+  --color-line: #e8eaf0;
+}
+
+html { -webkit-tap-highlight-color: transparent; }
+body { @apply bg-slate-100 font-sans text-ink antialiased; }
+button, a, input, textarea, select { @apply outline-none focus-visible:ring-2 focus-visible:ring-brand/60 focus-visible:ring-offset-1; }
+
+@keyframes sheet-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.animate-sheet { animation: sheet-up 0.25s ease-out; }
+.animate-fade { animation: fade-in 0.2s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-sheet, .animate-fade { animation: none; }
+}
+html { scrollbar-gutter: stable; }
