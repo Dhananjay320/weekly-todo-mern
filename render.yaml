@@ -4,7 +4,7 @@ services:
     name: weekly-todo
     runtime: node
     plan: free
-    buildCommand: cd client && npm ci && npm run build && cd ../server && npm ci --omit=dev
+    buildCommand: cd client && npm ci && npm run build && cd ../server && npm ci
     startCommand: node server/src/index.js
     healthCheckPath: /api/health
     envVars:

@@ -7,8 +7,7 @@ let uri = process.env.MONGODB_URI;
 let memory;
 
 if (!uri) {
-  // No database configured: run against a throwaway in-memory MongoDB (local try-out only).
-  if (process.env.NODE_ENV === 'production') throw new Error('MONGODB_URI is required in production');
+  // No database configured: run against a throwaway in-memory MongoDB (data resets on restart).
   const { MongoMemoryServer } = await import('mongodb-memory-server');
   memory = await MongoMemoryServer.create();
   uri = memory.getUri();
