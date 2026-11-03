@@ -24,6 +24,7 @@ interface TasksState {
 
 const TasksContext = createContext<TasksState | null>(null)
 
+const EMPTIED_KEY = 'todo.emptied'
 const sortByStart = (list: Task[]) => [...list].sort((a, b) => a.startAt.localeCompare(b.startAt))
 const message = (err: unknown) => (err instanceof ApiError ? err.message : 'Something went wrong')
 
@@ -44,7 +45,12 @@ export function TasksProvider({ children }: { children: React.ReactNode }) {
     setLoading(true)
     setLoadError(null)
     try {
-      setTasks(await api.list())
+      let list = await api.list()
+      // Start with example tasks instead of a blank screen, unless the visitor deleted everything themselves.
+      if (list.length === 0 && !localStorage.getItem(EMPTIED_KEY)) {
+        list = sortByStart(await api.sample())
+      }
+      setTasks(list)
     } catch (err) {
       setLoadError(message(err))
     } finally {
@@ -93,6 +99,7 @@ export function TasksProvider({ children }: { children: React.ReactNode }) {
         setTasks((list) => list.filter((t) => t.id !== task.id))
         try {
           await api.remove(task.id)
+          if (tasks.length === 1) localStorage.setItem(EMPTIED_KEY, '1')
           notify(`“${task.title}” deleted`)
         } catch (err) {
           setTasks((list) => sortByStart([...list, task]))
@@ -101,6 +108,7 @@ export function TasksProvider({ children }: { children: React.ReactNode }) {
       },
       async loadSample() {
         try {
+          localStorage.removeItem(EMPTIED_KEY)
           const added = await api.sample()
           setTasks((list) => sortByStart([...list, ...added]))
           notify(`Added ${added.length} sample tasks`)
