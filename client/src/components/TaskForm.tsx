@@ -75,12 +75,12 @@ export function TaskForm({ task, defaultDate, onClose }: TaskFormProps) {
           <div className="grid grid-cols-2 gap-4">
             <label className="relative block">
               <span className="sr-only">Start time</span>
-              <Icon name="clock" size={18} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-ink" />
+              <Icon name="clock" size={18} className="pointer-events-none absolute z-10 top-1/2 left-3 -translate-y-1/2 text-ink" />
               <input type="time" required className={`${field} pl-10`} value={startTime} onChange={(e) => setStartTime(e.target.value)} aria-invalid={!!errors.startAt} />
             </label>
             <label className="relative block">
               <span className="sr-only">End time (optional)</span>
-              <Icon name="clock" size={18} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-ink" />
+              <Icon name="clock" size={18} className="pointer-events-none absolute z-10 top-1/2 left-3 -translate-y-1/2 text-ink" />
               <input type="time" className={`${field} pl-10`} value={endTime} onChange={(e) => setEndTime(e.target.value)} aria-invalid={!!errors.endAt} />
             </label>
           </div>

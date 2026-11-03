@@ -16,6 +16,9 @@
 }
 
 html { -webkit-tap-highlight-color: transparent; }
+/* Time fields draw their own clock icon: hide Chrome's, but keep the whole field opening the picker. */
+input[type='time'] { position: relative; }
+input[type='time']::-webkit-calendar-picker-indicator { position: absolute; inset: 0; width: auto; height: auto; opacity: 0; cursor: pointer; }
 body { @apply bg-slate-100 font-sans text-ink antialiased; }
 button, a, input, textarea, select { @apply outline-none focus-visible:ring-2 focus-visible:ring-brand/60 focus-visible:ring-offset-1; }
 

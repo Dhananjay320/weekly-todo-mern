@@ -170,8 +170,12 @@ export function Home({ onSearch, onAdd, onView, onEdit }: HomeProps) {
         </section>
       </div>
 
+      {/* Fade content out under the floating button so it never sits on top of task text. */}
+      <div aria-hidden="true"
+        className="pointer-events-none fixed inset-x-0 bottom-0 z-20 mx-auto h-28 max-w-md bg-gradient-to-t from-white from-45% to-transparent md:max-w-5xl xl:hidden" />
+      {/* Phone/tablet: centred as in the Figma. Wide screens: beside the content, outside the card columns. */}
       <button type="button" onClick={() => onAdd(selected)} aria-label="Add task"
-        className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 z-30 grid size-14 -translate-x-1/2 place-items-center rounded-full bg-brand text-white shadow-lg shadow-brand/40 transition-colors hover:bg-brand-dark">
+        className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 z-30 grid size-14 -translate-x-1/2 xl:left-auto xl:right-[calc(50%-32rem-5rem)] xl:translate-x-0 xl:bottom-10 place-items-center rounded-full bg-brand text-white shadow-lg shadow-brand/40 transition-colors hover:bg-brand-dark">
         <Icon name="plus" size={26} stroke={2.2} />
       </button>
     </main>
